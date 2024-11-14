@@ -210,4 +210,17 @@ class Property
         $resultQuery->execute();
         return $resultQuery->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function updateStatusPropertyById(): bool
+    {
+        $paramsQuery = [
+            ":status" => $this->status,
+            ":id" => $this->id
+        ];
+        $insertQuery = "UPDATE properties
+            SET status = :status
+            WHERE id = :id";
+        $resultQuery = $this->db->prepare($insertQuery);
+        return $resultQuery->execute($paramsQuery);
+    }
 }
