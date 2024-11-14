@@ -1,0 +1,240 @@
+:root {
+    font-family: "Montserrat", sans-serif;
+    --bg-sky-blue: #2196F3;
+    --bg-blue: #2683ba;
+    --bg-green: #4CAF50;
+    --bg-green-darker: #45a049;
+    --bg-dark-blue: #185076;
+    --bg-ocean-blue: #0c283a;
+    --bg-dark: #060609;
+    --bg-gray: #71787b;
+    --bg-gray-ligth: #efefef;
+    --bg-whitish-gray: #e2e2e2;
+    --bg-white: #ffff;
+    --bg-red: #f44336;
+    --bg-red-darker: #e53935;
+    --bg-red-error-darker: #721c24;
+    --bg-red-white-error: #f8d7da;
+    --gradient-white-to-gray: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+}
+
+.section-home,
+.section-property {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container-table {
+    margin-top: 50px;
+}
+
+.container-buttons-table-top {
+    height: fit-content;
+    padding: 10px 5px 5px 5px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid #71787b;
+}
+
+.container-buttons-table-top button {
+    padding: 12px;
+    font-size: medium;
+    border: 1px solid var(--bg-white);
+    font-weight: bold;
+    border-radius: 15px;
+    color: var(--bg-whitish-gray);
+    background: var(--bg-dark-blue);
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.container-buttons-table-top button:hover {
+    color: var(--bg-dark-blue);
+    border: 1px solid var(--bg-dark-blue);
+    background: var(--bg-white);
+}
+
+.content-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 100%;
+    overflow: hidden;
+    font-weight: bold;
+    box-shadow: 0 0 20px 0 var(--bg-whitish-gray);
+}
+
+.content-table thead tr {
+    background-color: var(--bg-dark);
+    color: var(--bg-white);
+    text-align: left;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.container-table tbody tr {
+    border-bottom: 1px solid var(grey);
+}
+
+.container-table tbody tr:nth-of-type(even) {
+    background-color: var(--bg-whitish-gray);
+}
+
+.container-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--bg-dark);
+}
+
+.container-buttons-table-aside {
+    display: flex;
+    padding: 10px;
+    font-size: 0;
+    gap: 5px;
+}
+
+.table-button-delete {
+    background-color: var(--bg-red);
+    color: var(--bg-white);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.table-button-delete:hover {
+    background: var(--bg-red-darker);
+}
+
+.table-button-update {
+    background-color: var(--bg-sky-blue);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.table-button-update:hover {
+    background: #1b90f0;
+}
+
+.table-button-detail {
+    background-color: var(--bg-green);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.table-button-detail:hover {
+    background-color: var(--bg-green-darker);
+}
+
+.container-table-button-top {
+    border: 1px solid var(--bg-ocean-blue);
+    padding: 5px;
+    display: flex;
+    border-radius: 10px 10px 0 0;
+}
+
+.container-table-button-top p {
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.list-container-buttons {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+.list-container-buttons li {
+    margin-right: 10px;
+}
+
+.list-container-buttons button {
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid var(--bg-dark);
+    font-weight: bold;
+    transition: 0.3s ease-in;
+    cursor: pointer;
+}
+
+.list-container-buttons button:hover {
+    color: var(--bg-white);
+    background-color: var(--bg-dark);
+}
+
+header {
+    width: 100vw;
+    background-color: var(--bg-dark);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+
+.dropbtn {
+    background-color: transparent;
+    padding: 10px;
+    color: var(--bg-dark);
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}

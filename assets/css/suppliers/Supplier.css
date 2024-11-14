@@ -1,0 +1,14 @@
+.form-supplier-creation {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    height: fit-content;
+    padding: 20px;
+    border: 1px solid #dbd8e3;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
