@@ -33,7 +33,13 @@ class PropertyController extends Controller
     private function actualizePropery($data, $id)
     {
         $clientData = $this->clientModel->getDataFromClientByDni($data["dniClient"]);
+        if ($clientData == false) {
+            throw new Exception("No existe un cliente con el DNI ingresado\nPor favor introduzca uno nuevamente");
+        }
         $supplierData = $this->supplierModel->getDataFromSupplierByCuil($data["cuilSupplier"]);
+        if ($supplierData == false) {
+            throw new Exception("No existe un proveedor con el CUIL ingresado\nPor favor introduzca uno nuevamente");
+        }
         $this->propertyModel->setIdClient($clientData["id"]);
         $this->propertyModel->setIdSupplier($supplierData["id"]);
         $this->propertyModel->setDomicile($data["domicilie"]);
@@ -46,17 +52,30 @@ class PropertyController extends Controller
 
     public function createProperty()
     {
-        $data = $this->getDataFromForm();
-        $clientData = $this->clientModel->getDataFromClientByDni($data["dniClient"]);
-        $supplierData = $this->supplierModel->getDataFromSupplierByCuil($data["cuilSupplier"]);
-        $this->propertyModel->setIdClient($clientData["id"]);
-        $this->propertyModel->setIdSupplier($supplierData["id"]);
-        $this->propertyModel->setDomicile($data["domicilie"]);
-        $this->propertyModel->setpaidAmount($data["paidAmount"]);
-        $this->propertyModel->setSpentAmount($data["spentAmount"]);
-        $this->propertyModel->setStatus($data["status"]);
-        $this->propertyModel->createProperty();
-        $this->redirectToHome();
+        try {
+            $data = $this->getDataFromForm();
+            $clientData = $this->clientModel->getDataFromClientByDni($data["dniClient"]);
+            if ($clientData == false) {
+                throw new Exception("No existe un cliente con el DNI ingresado\nPor favor introduzca uno nuevamente");
+            }
+            $supplierData = $this->supplierModel->getDataFromSupplierByCuil($data["cuilSupplier"]);
+            if ($supplierData == false) {
+                throw new Exception("No existe un proveedor con el CUIL ingresado\nPor favor introduzca uno nuevamente");
+            }
+            $this->propertyModel->setIdClient($clientData["id"]);
+            $this->propertyModel->setIdSupplier($supplierData["id"]);
+            $this->propertyModel->setDomicile($data["domicilie"]);
+            $this->propertyModel->setpaidAmount($data["paidAmount"]);
+            $this->propertyModel->setSpentAmount($data["spentAmount"]);
+            $this->propertyModel->setStatus($data["status"]);
+            $this->propertyModel->createProperty();
+            $this->redirectToHome();
+        } catch (Exception $error) {
+            session_start();
+            $_SESSION['error'] = $error->getMessage();
+            header("Location: ../views/properties/createProperty.php");
+            exit();
+        }
     }
 
     public function showProperties()
@@ -73,8 +92,14 @@ class PropertyController extends Controller
 
     public function detailProperty()
     {
-        $id = $this->getIdUrl();
-        return $this->propertyModel->detailPropertyById($id);
+        try {
+            $id = $this->getIdUrl();
+            return $this->propertyModel->detailPropertyById($id);
+        } catch (Exception $error) {
+            session_start();
+            $_SESSION['error'] = $error->getMessage();
+            $this->redirectToHome();
+        }
     }
 
     public function detailPropertiesWithPerformance()
@@ -94,14 +119,37 @@ class PropertyController extends Controller
 
     public function updateProperty()
     {
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
-        $id = $this->getIdUrl();
-        if ($requestMethod == "GET") {
-            return $this->detailProperty();
-        } elseif ($requestMethod == "POST") {
-            $propertyFormUpdateData = $this->getDataFromForm();
-            $this->actualizePropery($propertyFormUpdateData, $id);
-        };
+        try {
+            $requestMethod = $_SERVER['REQUEST_METHOD'];
+            $id = $this->getIdUrl();
+            if ($requestMethod == "GET") {
+                return $this->detailProperty();
+            } elseif ($requestMethod == "POST") {
+                $propertyFormUpdateData = $this->getDataFromForm();
+                $this->actualizePropery($propertyFormUpdateData, $id);
+            };
+        } catch (Exception $error) {
+            session_start();
+            $_SESSION['error'] = $error->getMessage();
+            header("Location: ../views/properties/updateProperty.php?action=update&id=" . $id);
+            exit();
+        }
+    }
+
+    public function renewStatePropery()
+    {
+        try {
+            $id = $this->getIdUrl();
+            $this->propertyModel->setId($id);
+            $this->propertyModel->setStatus("DESOCUPADO");
+            $this->propertyModel->updateStatusPropertyById();
+            $this->redirectToHome();
+        } catch (Exception $error) {
+            session_start();
+            $_SESSION['error'] = $error->getMessage();
+            $this->redirectToHome();
+            exit();
+        }
     }
 }
 
@@ -117,5 +165,8 @@ switch ($action) {
         break;
     case "update":
         $controller->updateProperty();
+        break;
+    case "renew-state":
+        $controller->renewStatePropery();
         break;
 }
