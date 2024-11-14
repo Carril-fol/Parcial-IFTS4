@@ -59,4 +59,13 @@ class Controller
         header("Location: ../../views/" . $folder . "/" . $file . ".php");
         exit();
     }
+
+    public function errorInSession()
+    {
+        session_start();
+        if (isset($_SESSION['error'])) {
+            echo "<div class='error-msg' ><p>" . $_SESSION['error'].  "</p>" . "</div>";
+            unset($_SESSION['error']);
+        }
+    }
 }
