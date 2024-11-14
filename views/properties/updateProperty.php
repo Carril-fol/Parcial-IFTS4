@@ -26,6 +26,9 @@ $dataProperty = $controller->detailProperty();
         </nav>
     </header>
     <section class="section-property">
+        <div>
+            <?php $controller->errorInSession(); ?>
+        </div>
         <form class="form-property-creation" method="POST" action="../../controllers/properties.php?action=update&id=<?php echo $dataProperty["id"] ?>">
             <div class="container-fields-form-turn">
                 <div class="form-header">

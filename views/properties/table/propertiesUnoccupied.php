@@ -80,7 +80,7 @@ $rows = $controller->detailPropertiesUnoccupied();
                                     <a href="../detailProperty.php?action=detail&id=<?php echo $row["id"]; ?>">
                                         <button class="table-button-detail" type="button">Detalle</button>
                                     </a>
-                                    <a href="controllers/properties.php?action=delete&id=<?php echo $row["id"]; ?>">
+                                    <a href="../../../controllers/properties.php?action=delete&id=<?php echo $row["id"]; ?>">
                                         <button class="table-button-delete" type="button">Eliminar</button>
                                     </a>
                                 </div>

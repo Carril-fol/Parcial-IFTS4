@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . "/../../controllers/properties.php";
+$controller = new PropertyController();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,13 +15,18 @@
 
 <body>
     <header>
-        <div class="logo">
-            <a href="../../index.php">
-                <img src="../../assets/images/logo-white.webp" alt="logo" />
-            </a>
-        </div>
+        <nav>
+            <div class="logo">
+                <a href="../../index.php">
+                    <img src="../../assets/images/logo-white.webp" alt="logo" />
+                </a>
+            </div>
+        </nav>
     </header>
     <section class="section-property">
+        <div>
+            <?php $controller->errorInSession(); ?>
+        </div>
         <form class="form-property-creation" method="POST" action="../../controllers/properties.php?action=create">
             <div class="container-fields-form-turn">
                 <div class="form-header">

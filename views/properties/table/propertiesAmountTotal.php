@@ -78,9 +78,15 @@ $rows = $controller->detailPropertiesAmountTotalYear();
                                     <a href="../detailProperty.php?action=detail&id=<?php echo $row["id"]; ?>">
                                         <button class="table-button-detail" type="button">Detalle</button>
                                     </a>
-                                    <a href="controllers/properties.php?action=delete&id=<?php echo $row["id"]; ?>">
-                                        <button class="table-button-delete" type="button">Eliminar</button>
-                                    </a>
+                                    <?php if ($row["status"] != "BAJA"): ?>
+                                        <a href="../../../controllers/properties.php?action=delete&id=<?php echo $row["id"]; ?>">
+                                            <button class="table-button-delete" type="button">Eliminar</button>
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="../../../controllers/properties.php?action=renew-state&id=<?php echo $row["id"]; ?>">
+                                            <button class="table-button-detail" type="button">Renovar</button>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>

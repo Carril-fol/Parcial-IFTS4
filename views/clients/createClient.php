@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . "/../../controllers/clients.php";
+$controller = new ClientController();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +12,7 @@
     <link rel="stylesheet" href="../../assets/css/App.css">
     <title>Inmuebles</title>
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -17,6 +22,9 @@
         </div>
     </header>
     <section class="section-property">
+        <div>
+            <?php $controller->errorInSession(); ?>
+        </div>
         <form class="form-property-creation" method="POST" action="../../controllers/clients.php?action=create">
             <div class="container-fields-form-turn">
                 <div class="form-header">

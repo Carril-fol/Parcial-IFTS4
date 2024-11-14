@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . "/../../controllers/suppliers.php";
+$controller = new SupplierController();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +13,7 @@
     <link rel="stylesheet" href="../../assets/css/App.css">
     <title>Inmuebles</title>
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -18,6 +23,9 @@
         </div>
     </header>
     <section class="section-property">
+        <div>
+            <?php $controller->errorInSession(); ?>
+        </div>
         <form class="form-supplier-creation" method="POST" action="../../controllers/suppliers.php?action=create">
             <div class="container-fields-form-turn">
                 <div class="form-header">
@@ -38,4 +46,5 @@
         </form>
     </section>
 </body>
+
 </html>
